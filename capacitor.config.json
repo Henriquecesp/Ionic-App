@@ -1,8 +1,9 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "myApp",
+  "appId": "com.example.app",
+  "appName": "MyAPp",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
-  "cordova": {}
+  "cordova": {},
+  "linuxAndroidStudioPath": "/home/henrique/android-studio/bin/studio.sh"
 }
