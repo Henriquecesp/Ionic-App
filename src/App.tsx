@@ -1,15 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { AppPage } from "./declarations";
 
+/*Pages import */
 import Menu from "./components/Menu";
 import Main from "./pages/Main";
 import List from "./pages/List";
-import Slides from "./pages/Slides";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 import Settings from "./pages/SettingsPage";
-import { home, list, settings, person, logOut, airplane } from "ionicons/icons";
+
+import { list, settings, person, logOut, home } from "ionicons/icons";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -29,8 +32,9 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import Default from "./pages/Default";
-// import Home from "./pages/Home";
+
+//Import connection test
+import { connection } from "./connection";
 
 const appPages: AppPage[] = [
   {
@@ -40,46 +44,45 @@ const appPages: AppPage[] = [
   },
   {
     title: "Profile",
-    url: "/home/profile",
+    url: "/profile",
     icon: person
   },
   {
     title: "List",
-    url: "/home/list",
+    url: "/list",
     icon: list
   },
   {
     title: "Settings",
-    url: "/home/settings",
+    url: "/settings",
     icon: settings
   },
   {
     title: "Logout",
     url: "/",
     icon: logOut
-  },
-  {
-    title: "Default",
-    url: "/default",
-    icon: airplane
   }
 ];
-
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonSplitPane contentId="main">
-        <Menu appPages={appPages} />
-        <IonRouterOutlet id="main">
-          <Route path="/home" component={Main} exact={true} />
-          <Route path="/home/list" component={List} exact={true} />
-          <Route path="/home/settings" component={Settings} exact={true} />
-          <Route path="/" component={Slides} exact={true} />
-          <Route path="/default" component={Default} exact={true} />
-        </IonRouterOutlet>
-      </IonSplitPane>
-    </IonReactRouter>
-  </IonApp>
-);
-
-export default App;
+export default class App extends Component {
+  componentDidMount() {
+    connection();
+  }
+  render() {
+    return (
+      <IonApp>
+        <IonReactRouter>
+          <IonSplitPane contentId="main">
+            <Menu appPages={appPages} />
+            <IonRouterOutlet id="main">
+              <Route exact={true} path="/" component={Login} />
+              <Route path="/home" component={Main} />
+              <Route path="/list" component={List} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/settings" component={Settings} />
+            </IonRouterOutlet>
+          </IonSplitPane>
+        </IonReactRouter>
+      </IonApp>
+    );
+  }
+}

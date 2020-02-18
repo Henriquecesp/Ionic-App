@@ -1,16 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Toolbar, IconButton, Button, AppBar } from "@material-ui/core";
+import { Toolbar, AppBar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
-import { IonToolbar, IonButtons, IonMenuButton, IonTitle } from "@ionic/react";
+import { IonToolbar, IonButtons, IonMenuButton } from "@ionic/react";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
   menuColor: {
-    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
+    background:
+      "linear-gradient(to right, rgba(62,146,204,1) 0%, rgba(42,98,143,1) 0%, rgba(42,98,143,1) 100%)"
   },
   menuLink: {
     textDecoration: "none",
@@ -34,21 +33,7 @@ const Title = ({ name }: { name: string }) => {
             <IonButtons slot="start">
               <IonMenuButton color="light" />
             </IonButtons>
-            <div className={classes.title}>
-              <Button>
-                <Link className={classes.menuLink} to="/">
-                  {name}
-                </Link>
-              </Button>
-            </div>
-            <Button>
-              <Link to="/create" className={classes.menuLink}>
-                Create
-              </Link>
-            </Button>
-            <Button color="inherit" className={classes.menuLink}>
-              Login
-            </Button>
+            <div className={classes.title}>{name}</div>
           </Toolbar>
         </AppBar>
       </div>

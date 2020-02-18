@@ -1,5 +1,5 @@
 import React from "react";
-import { IonPage, IonContent } from "@ionic/react";
+import { IonPage, IonContent, IonHeader } from "@ionic/react";
 import Title from "../../components/Header";
 import {
   List,
@@ -17,9 +17,10 @@ import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 export default function Settings() {
   return (
     <IonPage>
-      <IonContent>
+      <IonHeader>
         <Title name="Settings" />
-
+      </IonHeader>
+      <IonContent>
         <List>
           <ListSubheader>Connection</ListSubheader>
           <ListItem>
